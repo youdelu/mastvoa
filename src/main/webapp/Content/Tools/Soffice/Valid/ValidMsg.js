@@ -1,0 +1,1 @@
+var SFValid={};SFValid.ValidMsg=function(n){for(var i="",t=0;t<n.length;t++)i+=n[t].DName+n[t].Msg+"!\n";i!=""&&alert(i)}

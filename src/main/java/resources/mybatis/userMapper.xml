@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.test.dao.UserDao">
+
+	<cache readOnly="true" eviction="FIFO"></cache>
+ 
+	<select id="login" resultType="com.test.entity.User"  parameterType="map"  >
+		 select * from _user where userid = '${userid}';
+	</select>
+	<select id="count" resultType="int"  parameterType="map"  >
+		 select count(*) from _user where userid = '${userid}';
+	</select>
+	<select id="getUser" resultType="map" >
+		select id,username,_password,root,power,_date from _user ${condition}
+	</select>
+	 <select id="getRecordsFiltered" resultType="int" >
+		select count(*) from _user  ${condition}
+	</select>
+	<select id="getRecordsTotal" resultType="int" >
+		select count(*) from _user
+	</select>
+	<delete id="deleteUser" >
+		delete from _user where id = ${id} and id != 1;
+	</delete>
+	<insert id="insertUser" useGeneratedKeys="true"  keyProperty="id" parameterType ="com.test.entity.User" >
+		insert into _user (userid,username,_password,root,power) values('${userid}','${username}','${_password}','${root}','${power}');
+		insert into index_config  value('${userid}','false','false');
+	</insert>
+	<select id="updateUser" parameterType ="com.test.entity.User" >
+		update _user set 
+		<if test="_password != null">
+			_password ='${_password}'
+		</if>
+		
+		<if test="root != '-1'">
+			<if test="_password != null">
+			 ,
+			</if>
+		 username ='${username}' ,
+		root ='${root}', power ='${power}'   
+		</if>
+		where id = ${id}
+	</select>
+</mapper> 

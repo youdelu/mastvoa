@@ -1,0 +1,559 @@
+/*加载用户列表动画*/
+.load-user {
+	width: 100%;
+	height: 100%;
+	background: url(../../js/layer/skin/default/xubox_loading2.gif)
+		no-repeat center center;
+}
+
+/*聊天窗口最外层*/
+.msg-main {
+	border-radius: 5px;
+	position: relative;
+	display: none;
+}
+
+.left-content {
+	width: 630px;
+	height: 550px;
+	background-color: #f1f1f1;
+	border-radius: 5px;
+	box-shadow: 0 0 4px 3px rgba(220, 220, 220, 0.5);
+}
+
+.right-content {
+	width: 420px;
+	height: 550px;
+	position: absolute;
+	background-color: #ffffff;
+	left: 630px;
+	top: 0;
+	display: none;
+	border-radius: 5px;
+	box-shadow: 0 0 4px 3px rgba(220, 220, 220, 0.5);
+}
+
+.right-content iframe {
+	border-radius: 0 5px 5px 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+	overflow: auto;
+	background-color: white;
+}
+
+/*横向头像列表*/
+.user-head {
+	overflow-x: hidden;
+	overflow-y: hidden;
+	width: 600px;
+	height: 70px;
+	white-space: nowrap;
+	padding-left: 20px;
+}
+
+.user-head li {
+	height: 70px;
+	display: inline-block;
+	cursor: pointer;
+	padding: 0px 5px;
+	position: relative;
+}
+
+.msg-cont-one .cont {
+	display: none;
+}
+/*当前未读消息.user-head li */
+.msg-count {
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	position: absolute;
+	border-radius: 20px;
+	font-weight: bold;
+	color: white;
+	top: 0px;
+	left: 25px;
+	text-align: center;
+	display: none;
+	background:
+		url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAZlBMVEVkvubqv1pkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvuZkvubjTY9GAAAAIXRSTlMAAAasWwPbVfnf4IlW41yKVKvkpvpR89dS8tkHi5OUU/haANQlAAAAgElEQVR4Xm3Q6w6DIAyG4Y8CIsKmm7rzqfd/k4uMZAp9fz5J06ZIURx9ezqPjgAolWxuONdcMtrAq4JN2POmsKDjokGBdiUeCYar9jjUqNHV2OFTY4urhDdhXFwkniQdfwdiiU4BeGyt/73uubaXTQi8/08egIwgo/00eW0IC34B42Ym4g2eOEUAAAAASUVORK5CYII=')
+		no-repeat;
+}
+/*右边列表头像未读消息数目*/
+.msg-cont-one .cont .msg-count {
+	top: 15px;
+	left: 25px;
+}
+
+.msg-cont-two .cont .msg-count, .msg-cont-three .cont .msg-count {
+	top: 15px;
+	left: 25px;
+}
+/*关闭当前聊天 悬停才有效*/
+.user-head .close {
+	position: absolute;
+	left: 40px;
+	line-height: 16px;
+	width: 16px;
+	height: 16px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	top: 0px;
+	background:
+		url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAV1BMVEXSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKADSKAD0zMP1zcT///+Rdz3cAAAAGXRSTlMABgkqKyyOj5CUlZi7vdTW19jz9Pj5+vz9eAto8AAAAGpJREFUeF5lj1kOwyAMRE3Zk5SSlARMev9zlkWKWN6HNR7J9hgyVFjnPoJCheiAhbC+Sr/hw5skY8EGDcB8a3gGEjsk2N6wcKYaf4WY5Nkad5LHOGLGpQp4f5YPwZYp+vRchan9+hrFs/4DCl0S7TXeC/cAAAAASUVORK5CYII=')
+		no-repeat;
+	display: none;
+}
+
+.user-head li.hover .close {
+	display: block;
+}
+/*非激活头像透明度*/
+.user-head li img {
+	opacity: 0.6;
+}
+/*激活头像不透明*/
+.user-head li.hover img, .user-head li.selected img {
+	opacity: 1;
+}
+
+.user-head li .arrow-up {
+	display: none;
+}
+
+.user-head li.selected .arrow-up {
+	top: 60px;
+	left: 20px;
+	display: block;
+	border-bottom: 10px solid #fff;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+}
+
+.user-head img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+}
+
+/*当前窗口聊天信息*/
+.msg-record {
+	width: 100%;
+	border-bottom: 1px solid #f1f1f1;
+}
+
+.msg-record>li {
+	height: 280px;
+	overflow-y: auto;
+	display: none;
+}
+
+.msg-record .time {
+	text-align: center;
+	height: 16px;
+	line-height: 16px;
+	width: 100%;
+	color: #95a0aa;
+}
+
+.msg-record .record-content {
+	border-radius: 10px;
+	padding: 10px;
+	margin-top: 10px;
+	position: relative;
+	width: auto;
+	color: white;
+	line-height: 24px;
+	min-height: 24px;
+	margin-bottom: 10px;
+	word-break: break-all;
+	max-width: 500px;
+}
+
+.msg-record .record-content img {
+	max-width: 500px;
+	cursor: pointer;
+}
+/*群组消息宽度需减少*/
+.group-record, .group-record img {
+	max-width: 440px !important;
+}
+
+.group-record {
+	margin-top: 30px !important;
+	border-top-left-radius: 5px !important;
+}
+
+.group-record .arrow-left {
+	top: 5px !important;
+}
+
+/*其他人发的信息*/
+.you-say {
+	float: left;
+	background-color: #95a0aa;
+	margin-right: 70px;
+	margin-left: 10px;
+}
+/*我发的信息*/
+.i-say {
+	float: right;
+	background-color: #66ccff;
+	margin-left: 70px;
+	margin-right: 10px;
+}
+
+.msg-record .arrow-right {
+	border-left: 7px solid #66ccff;
+	right: -6px;
+	top: 10px;
+}
+
+.msg-record .arrow-left {
+	left: -7px;
+	top: 10px;
+	border-right: 7px solid #95a0aa;
+}
+
+.clear-float {
+	clear: both;
+}
+
+.add-msg {
+	position: relative;
+}
+
+.add-msg .msg-more {
+	color: #9B9B9B;
+	position: absolute;
+	z-index: 99999;
+	right: 30px;
+	top: 5px;
+	cursor: pointer;
+	background: url(record.png) no-repeat 2px 3px;
+	padding-left: 25px;
+}
+
+.add-msg .msg-more .arrow {
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 5px solid #9b9b9b;
+	width: 0;
+	height: 0;
+	display: block;
+	position: absolute;
+	top: 5px;
+	right: -10px;
+}
+
+.add-msg .selected {
+	color: #66ccff;
+}
+
+.add-msg .selected .arrow {
+	border-right: 5px solid #66ccff;
+	border-left: none !important;
+}
+
+/*输入框和聊天信息容器*/
+.msg-container {
+	background-color: #ffffff;
+	width: 610px;
+	height: 410px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border-radius: 5px;
+}
+
+.msg-btn {
+	border-top: 1px solid #e9e8e8;
+	padding-top: 5px;
+	margin-top: 10px;
+}
+
+.msg-btn li {
+	display: inline;
+}
+
+.msg-btn input {
+	width: 49%;
+	border: none;
+	background: none;
+	cursor: pointer;
+	height: 30px;
+	line-height: 30px;
+	font-weight: bold;
+}
+
+#close-current-msg {
+	color: #9B9B9B;
+	border-right: 1px solid #e9e8e8;
+}
+
+#send-current-msg {
+	color: #66ccff;
+}
+
+.msg-drag {
+	height: 20px;
+	width: 590px;
+	float: left;
+}
+
+.msg-close {
+	text-align: right;
+	padding-right: 20px;
+}
+
+.msg-close a {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 20px;
+	color: #66ccff;
+	float: right;
+	width: 15px;
+	height: 20px;
+}
+
+/*弹出层大图*/
+.big-img {
+	overflow: auto;
+	text-align: center;
+	background: white;
+	padding-top: 10px;
+}
+
+/*右下角提示内容样式*/
+.mind {
+	padding: 26px 23px 26px 23px;
+	/*max-height: 180px;*/
+	/*overflow: hidden;*/
+	min-height: 100px;
+}
+
+.mind li {
+	/*height: 24px;*/
+	line-height: 24px;
+	cursor: pointer;
+}
+/*右下角标题宽度*/
+.xubox_title em {
+	width: 100% !important;
+}
+
+.xubox_setwin .diy-min cite {
+	position: absolute;
+	width: 14px;
+	height: 2px;
+	left: 0px;
+	top: 50%;
+	margin-top: -1px;
+	background-color: #fff;
+	cursor: pointer;
+	_overflow: hidden;
+}
+
+#importantIcon {
+	display: none;
+	position: fixed;
+	bottom: 8px;
+	right: 25px;
+	z-index: 88888;
+}
+
+#importantIcon a {
+	display: block;
+	background: url(box_open.png);
+	width: 32px;
+	height: 32px;
+}
+
+#importantIcon a:hover {
+	background: url(box_open_p.png);
+}
+
+/*用户组箭头颜色*/
+.group .arrow-bottomright {
+	border-bottom-color: #ccc;
+}
+
+/*在线状态*/
+#change-status {
+	float: right;
+	position: relative;
+	padding-right: 10px;
+}
+
+#current-status {
+	cursor: pointer;
+}
+
+#status-list {
+	position: absolute;
+	background-color: #e2f1f4;
+	width: 130px;
+	border-radius: 5px;
+	left: -100px;
+	z-index: 999;
+	display: none;
+}
+
+/*s {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        color: #000000;
+        text-decoration: none;
+        border-radius: 5px;
+    }*/
+#status-list .arrow-up {
+	border-bottom-color: #e2f1f4;
+}
+
+#edit-menu-div, #edit-memo-div {
+	display: none;
+	width: 300px;
+	padding: 10px;
+	background: #ffffff;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#select-status {
+	border: 1px solid #e2e0e1;
+	width: 270px;
+	margin-bottom: 5px;
+}
+
+#edit-memo-div textarea {
+	overflow: auto;
+	border: 1px solid #e2e0e1;
+	width: 270px;
+	height: 106px;
+	border-radius: 5px;
+}
+
+.input, #user-define-text {
+	border: 1px solid #e2e0e1;
+	width: 270px;
+	padding: 6px 12px;
+}
+
+#user-define-text {
+	display: none;
+}
+
+#edit-menu-div .btn { /**,#edit-memo-div .btn **/
+	display: block;
+	margin-top: 10px;
+}
+
+#edit-menu-div span, #edit-memo-div span {
+	display: inline-block
+}
+
+#edit-menu-div span.sp-left, #edit-memo-div span.sp-left {
+	width: 70px;
+	vertical-align: top;
+}
+
+#edit-menu-div span.sp-right, #edit-memo-div span.sp-right {
+	width: 270px;
+}
+
+#edit-menu-div .btn input, #edit-memo-div .btn input {
+	background-color: #4489ca;
+	color: white;
+	cursor: pointer;
+	border: none;
+	font-weight: bold;
+	font-family: "Microsoft YaHei", "宋体", arial, serif;
+	border-radius: 3px;
+	height: 30px;
+	line-height: 30px;
+	width: 60px;
+}
+
+.group-user {
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin-top: 10px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.group-user img {
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+}
+
+.username-container {
+	position: relative;
+}
+
+.group-user .group-username {
+	position: absolute;
+	left: 50px;
+	width: 200px;
+	top: -45px;
+	color: #95a0aa;
+	left: 50px;
+}
+
+.group-width {
+	width: 240px;
+}
+
+/*铃铛提示层*/
+.tip-div {
+	display: none;
+}
+
+.tip-div .arrow-up {
+	top: 60px;
+	left: 15px;
+}
+
+.tip-div .tip-fill {
+	width: 100%;
+	height: 7px;
+	position: absolute;
+	top: 60px;
+}
+
+#detail-tip {
+	width: 250px;
+	margin-top: 23px;
+	background-color: #ffffff;
+	border-radius: 5px;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	text-align: left;
+	box-shadow: 0 0 4px 3px rgba(220, 220, 220, 0.5);
+	overflow-y: auto;
+}
+
+#detail-tip>div {
+	max-width: 235px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	height: 25px;
+	line-height: 25px;
+	color: #95a0aa;
+}
+
+#detail-tip a {
+	text-decoration: none;
+	color: #95a0aa;
+}
+
+#detail-tip a:hover {
+	border-bottom: 2px solid #b5bcc3;
+}

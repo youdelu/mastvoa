@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.test.dao.MenuDao">
+
+	<cache readOnly="true" eviction="FIFO"></cache>
+
+	<select id="getMenu" resultType="com.test.entity.Menu"
+		parameterType="map">
+		select mid,parent_id, _name,link,icon,_type,_show,del from _menu
+		<if test="isHt == false">
+		 	 where _show = 0  and
+		</if>
+		<if test="hasDelete != true">
+			<if test="isHt == true">
+				where
+			</if>
+		  	del = 0
+		</if>
+		order by _order
+	</select>
+	<select id="getOneMenu" resultType="com.test.entity.Menu"
+		parameterType="map">
+		select * from _menu where mid = ${mid}
+	</select>
+	<select id="delMenu" parameterType="map">
+		<if test="hasDel == true">
+			delete from  _menu where mid = ${mid} or parent_id = ${mid};
+		</if>
+		<if test="hasDel == false">
+			update  _menu set del = 1  where mid = ${mid} or  parent_id = ${mid};
+		</if>
+	</select>
+	<insert id="insertMenu" useGeneratedKeys="true" keyProperty="mid"
+		parameterType="com.test.entity.Menu">
+		insert into _menu
+		(parent_id,_name,link,icon,_type,_order,_show)
+		values(${parent_id},'${_name}','${link}'
+		,'${icon}','${_type}','${_order}','${_show}');
+	</insert>
+	<update id="updateMenu" parameterType="com.test.entity.Menu">
+		update _menu set _name = '${_name}',link =
+		'${link}',icon='${icon}',_type='${_type}',_show='${_show}',_order='${_order}'
+		where
+		mid = ${mid}
+	</update>
+	<update id="updateDel"  parameterType="map">
+	 	update _menu set del = 0  where mid = ${mid} or  parent_id = ${mid};
+	</update>
+	<select id="getLock"  resultType="string" parameterType="map">
+		 select _lock from index_config where  userid =  '${uid}'  ;
+	</select>
+	<update id="putLock"  parameterType="map">
+	 	update index_config set _lock = '${value}'  where  userid =  '${uid} ';
+	</update>
+	<select id="getOption"  resultType="string" parameterType="map">
+		 select menu from index_config where  userid =  '${uid}'  ;
+	</select>
+	<update id="putOption"  parameterType="map">
+	 	update index_config set menu = '${value}'  where  userid =  '${uid} ';
+	</update>
+</mapper> 

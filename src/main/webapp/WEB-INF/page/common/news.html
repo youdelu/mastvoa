@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<meta charset="utf-8" />
+<title>Index</title>
+<link href="../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<meta name="viewport" content="width=device-width" />
+<link href="../Content/Tools/Bootstrap/css/bootstrap.css"
+	rel="stylesheet" />
+<link href="../Content/Tools/Temporary/css/dataTables.bootstrap.css"
+	rel="stylesheet" />
+<link href="../Content/Tools/Temporary/css/font-awesome.css"
+	rel="stylesheet" />
+<link href="../Content/Tools/Temporary/css/typicons.css"
+	rel="stylesheet" />
+<link href="../Content/Tools/Temporary/css/weather-icons.css"
+	rel="stylesheet" />
+<link href="../Content/Tools/Temporary/css/animate.css" rel="stylesheet" />
+<link href="../Content/Tools/Select2/css/select2.css" rel="stylesheet" />
+<link href="../Content/Tools/DtGrid/jquery.dtGrid.css" rel="stylesheet" />
+<link href="../Content/Styles/Default/Css/Common.css" rel="stylesheet" />
+
+<script src="../Content/Tools/Jquery/jquery.js" charset="utf-8"></script>
+<script src="../Content/Tools/Jquery/jquery.timeago.js" charset="utf-8"></script>
+<script src="../js/OpenDiv.js" charset="utf-8"></script>
+<script src="../Content/Tools/Jquery/jquery.form.js" charset="utf-8"></script>
+<script src="../Content/Tools/Bootstrap/js/bootstrap.js" charset="utf-8"></script>
+<script src="../Content/Tools/Select2/select2.full.js" charset="utf-8"></script>
+<script src="../Content/Tools/My97DatePicker/WdatePicker.js"
+	charset="utf-8"></script>
+<script src="../Content/Tools/DtGrid/jquery.dtGrid.js" charset="utf-8"></script>
+<script src="../Content/Tools/DtGrid/i18n/zh-cn.js" charset="utf-8"></script>
+<script src="../Content/Tools/Soffice/Dialog/Dialog.js" charset="utf-8"></script>
+<script src="../Content/Tools/Soffice/Msgbox/Msgbox.js" charset="utf-8"></script>
+<script src="../Content/Tools/Soffice/Valid/Valid.js" charset="utf-8"></script>
+<script src="../Content/Tools/Soffice/Valid/ValidMsg.js" charset="utf-8"></script>
+<script src="../Content/Scripts/Common.js" charset="utf-8"></script>
+<link
+	href="../Content/Tools/UMeditor/themes/default/css/umeditor.min.css"
+	rel="stylesheet" />
+<link href="../Content/Tools/Webuploader/webuploader.css"
+	rel="stylesheet" />
+<link href="../Content/Styles/Default/Css/news.css" rel="stylesheet" />
+<link href="../Content/Styles/Default/Css/sp.css" rel="stylesheet" />
+
+<script src="../Content/Tools/Webuploader/webuploader.nolog.js"></script>
+
+
+
+<script type="text/javascript"
+	src="../Content/Tools/UMeditor/umeditor.config.js" charset="utf-8"></script>
+<script type="text/javascript"
+	src="../Content/Tools/UMeditor/umeditor.js" charset="utf-8"></script>
+<script type="text/javascript"
+	src="../Content/Tools/UMeditor/lang/zh-cn/zh-cn.js" charset="utf-8"></script>
+
+<script src="../Content/Scripts/SharePlatform/share.js" charset="utf-8"></script>
+
+<link href="../Content/Tools/layer/skin/layer.css" rel="stylesheet" />
+<script src="../Content/Tools/layer/layer.js" charset="utf-8"></script>
+
+<script src="../Content/Scripts/SharePlatform/Sortable.js"></script>
+<script src="../Content/Tools/Soffice/Dialog/SfDialog2.js"
+	charset="utf-8"></script>
+<!--[if lt IE 9]>
+    <script src="../Content/Tools/Compatibility/html5shiv.min.js" charset="utf-8"></script>
+    <script src="../Content/Tools/Compatibility/respond.min.js" charset="utf-8"></script>
+    <script src="../Content/Scripts/CustomerRelationship/ie8checkbox.js" charset="utf-8"></script>
+    <link href="../Content/Styles/CusCrm/css/ie8checkbox.css" rel="stylesheet" />
+    <![endif]-->
+<!--[if lt IE 8]>
+    <script src="../Content/Tools/Compatibility/json2-min.js" charset="utf-8"></script>
+    <![endif]-->
+</head>
+<body>
+
+	<input type="hidden" id="isManager" name="isManager" value="1" />
+	<div class="sp-container">
+		<div class="col-lg-12 col-sm-12  dw-embed-row">
+			<!--左边内容-->
+			<div class="col-lg-2 col-md-2 col-sm-2 dw-embed-right-row">
+				<div class="sf-newslist-left">
+					<div class="sf-newslist-menu">
+						<ul>
+							<li><a href="/SpManager?manger=0">浏览</a></li>
+							<li class="active"><a href="/SpManager?manger=1">管理</a></li>
+						</ul>
+					</div>
+					<div class="sf-newslist-ranking">
+						<div class="dt">
+							<div class="btn-group dt-left-btn" role="group">
+								<div class="left-menu-name" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">
+									<span>浏览排行</span><i class="jt-down"></i>
+								</div>
+								<ul class="dropdown-menu" id="leftDropMenu">
+									<li><a href="javascript:void(0);" data-type="click">浏览</a>
+									</li>
+									<li><a href="javascript:void(0);" data-type="comment">评论</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<ul id="leftNewList" class="news-left-list">
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--右边内容-->
+			<div class="col-lg-10 col-sm-10 sp-main dw-embed-right-row">
+				<!--顶部导航-->
+				<div
+					class="filterbar col-md-12 col-sm-12  dw-embed-right-row dw-embed-left-row">
+					<div class="col-md-10 col-sm-8  dw-embed-row">
+						<div class="filterbar-combox">
+							<select id="new_query_type"
+								class="selectpicker report-query-select select-select2">
+								<option value="">所有类型</option>
+								<option value="0">新闻</option>
+								<option value="1">公告</option>
+							</select>
+						</div>
+						<div class="filterbar-combox">
+							<select id="new_query_status"
+								class="selectpicker report-query-select select-select2">
+								<option value="">所有状态</option>
+								<option value="0">草稿</option>
+								<option value="1">待审</option>
+								<option value="2">通过</option>
+								<option value="3">未通过</option>
+								<option value="4">已过期</option>
+							</select>
+						</div>
+						<div class="filterbar-date">
+							<div id="report_query_starttime"
+								class="input-group date report-time filterbar-date-control">
+								<input type="text" id="report-start-time" readonly
+									class="form-control report_query_date data-icon" value="" />
+							</div>
+
+							<div class="filterbar-date-icon">
+								<span class="glyphicon glyphicon-minus"></span>
+							</div>
+
+							<div id="report_query_endtime"
+								class="input-group date report-time filterbar-date-control ">
+								<input type="text" id="report-end-time" readonly
+									class="form-control report_query_date data-icon" value="" />
+							</div>
+						</div>
+						<div class="input-group filterbar-search">
+							<input id="new_query_title" data-type="1" type="text"
+								class="form-control" placeholder="输入关键字搜索"
+								data-provide="typeahead" />
+
+						</div>
+						<div class="input-group input-group-btn">
+							<button id="new_query_btn" class="btn btn-default sf-bt"
+								type="button" title="搜索">
+								<!--<span class="glyphicon glyphicon-search"></span>-->
+								搜索
+							</button>
+						</div>
+
+					</div>
+					<div class="col-md-2 col-sm-4  optionbar dw-embed-right-row">
+						<button id="btn_Refresh" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-refresh"></span>
+						</button>
+						<button id="btn_AddNews" type="button" class="btn btn-success">
+							<span class="glyphicon glyphicon-plus"></span>新建
+						</button>
+
+					</div>
+				</div>
+				<div class="col-md-12 col-sm-12 sp-table" id="viewTxt"
+					style="display: none;">
+					<div class="new-grid">
+						<div id="gridNews"
+							class="col-md-12 dt-grid-container dw-embed-row"></div>
+						<div id="gridNewsToolBar"
+							class="col-md-12 dt-grid-toolbar-container dw-embed-row"></div>
+					</div>
+					<div class="report-calendar">
+						<div id="report_calendar" class="col-md-12 dw-embed-row"></div>
+					</div>
+				</div>
+
+				<div class="col-md-12 imglist sp-table" id="spImgList"
+					style="display: block;">
+					<ul>
+
+					</ul>
+					<div
+						class="col-md-12 text-right dw-embed-row dt-grid-toolbar-container imglist-pager pager"
+						id="img-list-toolbar"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--新建、编辑-->
+	<div id="sidepage" class="sidepage dw-embed-row resizeMe"></div>
+	<script>
+
+    $(function () {
+        //$('select').select2();
+        $("select").select2({ language: 'zh-CN', minimumResultsForSearch: 5 });
+        /*日期选择*/
+        //日期选择 开始时间
+        $("#report_query_starttime").find("#report-start-time").click(function () {
+            WdatePicker({ autoPickDate: true, isShowClear: true, dateFmt: 'yyyy-MM-dd', maxDate: '#F{$dp.$D(\'report-end-time\')}', onpicked: queryReport });
+        });
+        //日期选择 结束时间
+        $("#report_query_endtime").find("#report-end-time").click(function () {
+            WdatePicker({ autoPickDate: true, isShowClear: true, dateFmt: 'yyyy-MM-dd', minDate: '#F{$dp.$D(\'report-start-time\')}', onpicked: queryReport });
+        });
+        var ishide = true;
+        if ($("#isManager").val() == "1") {//如果是管理员，就不隐藏
+            ishide = false;
+        }
+        //$(".sf-newslist-menu ul li").on("mouseenter", function () {
+        //    $(this).siblings().removeClass('active');
+        //    $(this).addClass('hover');
+        //}).on("mouseout", function () { $(this).removeClass('hover');});
+
+        $("#btn_Refresh").on("click", function () {
+            queryReport();
+        });
+        //0新闻1公告
+        var dtGridColumns = [
+               {
+                   id: 'Title', title: '标题', type: 'string',headerClass: 'grid-headerstyle-left', columnClass: 'grid-columnstyle-left col-md-4',
+                   resolution: function (value, record) {
+                       value = value.replace(/</g, "&lt;").replace(/>/g, "&gt;").substr(0,36);
+                       var content = '',icon='';
+                       switch (record.NewType) {
+                           case 0:
+                               icon = '<i class="sf-td-icon td-news" title="新闻"></i>';
+                               break;
+                           case 1:
+                               icon = '<i class="sf-td-icon td-gg" title="公告"></i>';
+                               break;
+                       }
+                       content = icon + '<span class="sf-td-title-text" title="value">' + value.substr(0, 20) + '';
+                       if (record.IsTop == "1") {
+                           content += '<span class="sf-td-title-stick">顶</span>';
+                       }
+                       content = content + "</span>";
+                       return content;
+                   }
+               },
+            {
+                id: "NewCode", title: '', type: 'string', hideType: 'sm|xs', headerClass: 'grid-headerstyle-center', columnClass: ' grid-columnstyle-center col-md-2 ',
+                resolution: function (value, record) {
+                    var sb = "";
+                    if ($("#isManager").val() == "1") {
+                        sb = sb + "<div class=\"sf-td-operation\">";
+                        sb = sb + "                        <i class=\"sf-td-menu sf-td-alter\" title=\"编辑\"  onclick=\"editNew('" + record.NewCode + "')\"></i>";
+                        sb = sb + "                        <i class=\"sf-td-menu sf-td-delete\" title=\"删除\"  onclick=\"delNew('" + record.NewCode + "')\"></i>";
+                        if (record.IsTop == "0") {
+                            sb = sb + "                        <i class=\"sf-td-menu sf-td-top\" title=\"置顶\"   onclick=\"topNew('" + record.NewCode + "','" + record.IsTop + "')\"></i>";
+                        }
+                        else {
+                            sb = sb + "                        <i class=\"sf-td-menu sf-td-untop\" title=\"取消置顶\"   onclick=\"topNew('" + record.NewCode + "','" + record.IsTop + "')\"></i>";
+                        }
+
+                        //sb = sb + "                        <i class=\"sf-td-menu sf-td-workflow\"  title=\"审核\"  onclick=\"flowNew('" + record.NewCode + "')\"></i>";
+                        sb = sb + "                    </div>";
+                    }
+                    else {
+                        sb = sb + "<div class=\"sf-td-icons\">";
+                        sb = sb + "                        <i class=\"sf-small-menu sf-td-like\" title=\"点赞次数\" ></i><span>" + record.PriaseNo + "</span>";
+                        sb = sb + "                        <i class=\"sf-small-menu sf-td-comment\" title=\"评论条数\"></i><span>" + record.CommentNo + "</span>";
+                        sb = sb + "                       <i class=\"sf-small-menu sf-td-view\" title=\"预览次数\" ></i><span>" + record.BrowseNo + "</span>";
+                        sb = sb + " </div>";
+                    }
+                    return sb;
+                }
+            },
+           {
+               id: 'SourceFrom', title: '来源', type: 'string', hideType: 'sm|xs', hide: ishide == true ? false : true, headerClass: 'grid-headerstyle-center', columnClass: ' grid-columnstyle-center col-md-2',
+               resolution: function (value, record) {
+                   var content="<div class=\"td-source-text\" title=\""+value+"\">"+value+"</div>";
+                   return content;
+               }
+           },
+               {
+                   id: 'NewStatus', title: '状态', type: 'string', hideType: 'xs', hide: ishide, headerClass: 'grid-headerstyle-center', columnClass: 'grid-columnstyle-center col-md-1',
+                   resolution: function (value, record) {
+                       var content = '';
+                       var efftime = record.EffectDate;//
+                       var datetime = new Date().format("yyyyMMdd");
+                           switch (parseInt(value)) {
+                               case 0:
+                                   content += '<span>草稿</span>';
+                                   break;
+                               case 1:
+                                   content += "<span style='color:red;'>待审</span>";
+                                   break;
+                               case 2:
+                                   if (efftime != ""&& efftime!=null) {
+                                       var aTime = new Date(efftime).format("yyyyMMdd");
+                                       if (parseInt(aTime) > parseInt(datetime)) {
+                                           content += "<span style='color:green;'>通过</span><i class='glyphicon glyphicon-lock' title='未生效'></i>";
+                                       }
+                                       else {
+                                           content += "<span style='color:green;'>通过</span>";
+                                       }
+                                   }
+                                   else {
+                                       content += "<span style='color:green;'>通过</span>";
+                                   }
+                                   break;
+                               case 3:
+                                   content += "<span style='color:red;'>未通过</span>";
+                                   break;
+                               case 4:
+                                   content += "<span style='color:red;'>已过期</span>";
+                                   break;
+                               default:
+                                   break;
+                           }
+                           return content;
+                   }
+               },
+              { id: 'CreateCode', title: '创建人', type: 'string', hideType: 'sm|xs', hide: ishide, headerClass: 'grid-headerstyle-center', columnClass: ' grid-columnstyle-center col-md-1' },
+              {
+                  id: 'CreateTime', title: '创建日期', type: 'date', format: 'yyyy-MM-dd hh:mm', otype: 'string', oformat: 'yyyy-MM-ddThh:mm:ss', hideType: 'sm|xs', hide: ishide, headerClass: 'grid-headerstyle-center', columnClass: 'grid-columnstyle-center col-md-2'
+                  //resolution: function (value, record) {
+                  //    return record.CreateTime.substr(0, 16).replace(/T/, ' ');
+                  //}
+              },
+              {
+                  id: 'EffectDate', title: '生效日期', type: 'date', format: 'yyyy-MM-dd', otype: 'string', oformat: 'yyyy-MM-ddThh:mm:ss', hideType: 'sm|xs', hide: ishide == true ? false : true, headerClass: 'grid-headerstyle-center', columnClass: 'grid-columnstyle-center col-md-2'
+                  //resolution: function (value, record) {
+                  //    console.log(value);
+                  //    if (record.InvalidTime==null) {
+                  //        return "";
+                  //    }
+                  //    return value;
+                  //}
+              }
+        ];
+        var dtGridOption = {
+            id: 'dtgrid001',
+            lang: 'zh-cn',
+            loadAll: false,
+            ajaxLoad: true,
+            loadURL: getPath() + "SpManager/GetList?isManager="+$("#isManager").val(),
+            columns: dtGridColumns,
+            tools: '',
+            gridContainer: 'gridNews',
+            toolbarContainer: "gridNewsToolBar",
+            tableClass: 'table table-bordered table-hover table-responsive grid-tablestyle',
+            pageSize: 15,
+            pageSizeLimit: [15, 50, 100],
+            onCellMouseOver: function (value, record, column, grid, dataNo, colunmNo, cell, row, extraCell, e) {
+                $(cell).css("background", "none");
+            },
+            onRowMouseOver: function (value, record, column, grid, dataNo, colunmNo, cell, row, extraRow, e) {
+                $(row).children().addClass("grid-rowstyle");
+                $(row).siblings().css("backgroundColor", "transparent");
+                $(row).css("backgroundColor", "#f4f9fc");
+                $(row).find(".sf-td-operation").show();
+            },
+            onRowMouseOut: function (value, record, column, grid, dataNo, colunmNo, cell, row, extraRow, e) {
+                $(row).children().removeClass("grid-columnstyle-noborder").removeClass("grid-rowstyle");
+                $(row).css("backgroundColor", "transparent");
+                $(row).find(".sf-td-operation").hide();
+            },
+            onRowClick: function (value, record, column, grid, dataNo, colunmNo, cell, row, extraRow, e) {
+                if ($("#isManager").val() == "1") {
+                    if (!SP.config.isopen && colunmNo == 0) {
+                        openDetail(record.NewCode);
+                    }
+                    else {
+                        if (colunmNo != 1) {
+                            editNew(record.NewCode);
+                        }
+                    }
+                }
+                else {
+                    openDetail(record.NewCode);
+                }
+                e = e || window.event;
+                if (e && e.stopPropagation)
+                    e.stopPropagation();
+                else
+                    e.cancelBubble = true;
+            }
+        };
+        grid_dw_plan = $.fn.DtGrid.init(dtGridOption);
+        grid_dw_plan.load();
+
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name></display-name>
+
+	<!-- spring框架必须定义ContextLoaderListener，在启动Web容器时，自动装配Spring applicationContext.xml的配置信息 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<context-param>
+		<!-- 指定Spring上下文配置文件 -->
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:applicationContext.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>spring.profiles.active</param-name>
+		<param-value>production</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>Dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<!-- 指定SpringMVC配置文件 -->
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/springmvc.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<!-- 指定请求的后缀，可以随意写，这里用.html作为请求后缀 -->
+		<servlet-name>Dispatcher</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 编码格式为UTF-8 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>XssFilter</filter-name>
+		<filter-class>com.test.common.XssFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>XssFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.do</welcome-file>
+	</welcome-file-list>
+	
+	
+	
+ <listener>
+    <description>ServletContextListener</description>
+    <listener-class>mylistener.RbacServletListener</listener-class>
+  </listener>
+  <!--
+  <session-config>
+    <session-timeout>10</session-timeout>
+  </session-config> -->
+  
+<!--   <filter>
+    <display-name>ForntendCheckFilter</display-name>
+    <filter-name>ForntendCheckFilter</filter-name>
+    <filter-class>myfilter.ForntendCheckFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ForntendCheckFilter</filter-name>
+    <url-pattern>/frontend/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>BackendCheckFilter</display-name>
+    <filter-name>BackendCheckFilter</filter-name>
+    <filter-class>myfilter.BackendCheckFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>BackendCheckFilter</filter-name>
+    <url-pattern>/backend/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>BackendCheckFilter</filter-name>
+    <url-pattern>/rbac/*</url-pattern>
+  </filter-mapping> -->
+<!--   <filter>
+    <filter-name>CharsetEncodingFilter</filter-name>
+    <filter-class>myfilter.CharsetEncodingFilter</filter-class>
+    <init-param>
+      <param-name>endcoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharsetEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping> -->
+ 
+  <servlet>
+    <servlet-name>Kaptcha</servlet-name>
+    <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    <init-param>
+      <param-name>kaptcha.image.height</param-name>
+      <param-value>35</param-value>
+    </init-param>
+    <init-param>
+      <param-name>kaptcha.textproducer.font.size</param-name>
+      <param-value>28</param-value>
+    </init-param>
+    <init-param>
+      <param-name>kaptcha.textproducer.char.length</param-name>
+      <param-value>4</param-value>
+    </init-param>
+    <init-param>
+      <param-name>kaptcha.textproducer.char.space</param-name>
+      <param-value>20</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Kaptcha</servlet-name>
+    <url-pattern>/kaptcha.jpg</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Checkcaptcha</display-name>
+    <servlet-name>Checkcaptcha</servlet-name>
+    <servlet-class>frontend.controller.Checkcaptcha</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Checkcaptcha</servlet-name>
+    <url-pattern>/checkcaptcha</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet>
+    <description></description>
+    <display-name>Countworkflow</display-name>
+    <servlet-name>Countworkflow</servlet-name>
+    <servlet-class>frontend.controller.Countworkflow</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Countworkflow</servlet-name>
+    <url-pattern>/countworkflow</url-pattern>
+  </servlet-mapping>
+
+</web-app>

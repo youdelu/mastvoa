@@ -1,0 +1,148 @@
+
+<link href="/Content/Tools/jPlayer/dist/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" />
+<script src="/Content/Tools/jPlayer/dist/jplayer/jquery.jplayer.min.js?v=1.0" charset="utf-8"></script>
+<script src="/Content/Tools/slimscroll/jquery.slimscroll.min.js" charset="utf-8"></script>
+
+<input type="hidden" id="NewCode" name="NewCode" value="" />
+<input type="hidden" name="spRangeCode" id="spRangeCode" value="所有人员" />
+<input type="hidden" name="spRangeName" id="spRangeName" value="所有人员" />
+<div class="slimScroll-wrap">
+    <!--操作菜单-->
+    <div class="side-toolbar">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <input type="button" class="btn btn btn-default sf-bt" id="HoldSave" value="暂存">
+                <input type="button" class="btn btn-default sf-bt" id="SaveForm" value="保存">
+            <input type="button" class="btn btn-default sf-bt" id="Preview" value="预览" onclick="Preview()">
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="side-close">
+                <span class="glyphicon glyphicon-remove" title="关闭"></span>
+            </div>
+            <div class="side-fullscreen" data-type="0">
+                <span class="glyphicon glyphicon-fullscreen" title="全屏"></span>
+            </div>
+        </div>
+    </div>
+    <!---end-->
+    <!--表单提交-->
+    <div class="side-content col-md-12 col-sm-12">
+        <form class="form-horizontal" role="form" id="newsFrm">
+            <div class="form-group">
+                <label class="col-md-2 control-label text-right"><span class="red">*</span>标题</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="Title" name="Title" placeholder="" maxlength="50">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label text-right">类型</label>
+                <div class="col-md-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="NewType" class="NewType" id="NewType1" value="0" checked="checked" />新闻
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="NewType" class="NewType" id="NewType2" value="1" />公告
+                    </label>
+                </div>
+                <label class="col-md-2 control-label text-right">来源</label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" id="SourceFrom" name="SourceFrom" placeholder="" maxlength="20">
+                </div>
+                
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label text-right">是否置顶</label>
+                <div class="col-md-4" id="istop">
+                    <span id="top-yes" class="sf-whether">是</span>
+                    <span id="top-no" class="sf-whether sf-whether-yes">否</span>
+                </div>
+                <label class="col-md-2 control-label text-right">允许评论</label>
+                <div class="col-md-3" id="ismsg">
+                    <span id="msg-yes" class="sf-whether sf-whether-yes">是</span>
+                    <span id="msg-no" class="sf-whether">否</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label text-right">生效日期</label>
+                <div class="col-md-4">
+                    <div id="effective_starttime" class="input-group col-lg-9">
+                        <input id="effective-start-time" readonly="readonly" class="form-control time-ipt data-icon" name=" effectdate" value="" type="text">
+                    </div>
+                    <span class="tip-info">不填则审核通过后即刻发布</span>
+                </div>
+                <label class="col-md-2 control-label text-right">失效日期</label>
+                <div class="col-md-3">
+                    <div id="expiration_endtime" class="input-group ">
+                        <input id="expiration-end-time" readonly="readonly" class="form-control time-ipt data-icon" name="InvalidTime" value="" type="text">
+                    </div>
+                    <span class="tip-info">不填则永久有效</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label text-right"><span class="red">*</span>发布范围</label>
+                <div class="col-md-10">
+                    <div class="sf-compile-range">＋</div>
+                    <div class="sf-compile-list">
+                        <span data-code="所有人员" data-name="所有人员" data-type="-1">所有人员<i class="glyphicon glyphicon-remove"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label text-right">布局</label>
+                <div class="col-md-9 sf-compile-right-width-1">
+                    <label class="radio-inline">
+                        <input type="radio" name="LayType" class="LayType" id="normal" value="0" checked="checked" />普通
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="LayType" class="LayType" id="videohive" value="1" />片头
+                    </label>
+                </div>
+            </div>
+            <div id="LayUpload" style="display:none;">
+                <div class="form-group">
+                    <label class="col-md-2 control-label text-right">片头</label>
+                    <div class="col-md-3">
+                        <div class="sf-upload-icon sf-upload-video" data-toggle="tooltip" data-placement="top" title="支持mp4格式">
+                            <div id="FileVideo"></div>
+                        </div>
+                        <div class="sf-upload-icon sf-upload-pic" data-toggle="tooltip" data-placement="top" title="支持gif,jpg,jpeg,png,bmp格式">
+                            <div id="FileImg"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" id="video-wrap" style="display:none;">
+                    <div class="col-md-10 col-md-offset-2">
+                        <ul id="videoList"></ul>
+                    </div>
+                </div>
+                <div class="form-group" id="img-wrap" style="display:none;">
+                    <div class="col-md-10 col-md-offset-2">
+                        <ul id="img-list"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label text-right">内容</label>
+                <div class="col-md-9 edit-content">
+                    <script id="container" name="content" type="text/html"></script>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label text-right">上传附件</label>
+                <div class="col-md-10">
+                    <div id="file_upload">
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-2">
+                    <ul id="fileList"></ul>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--end-->
+</div>
+
